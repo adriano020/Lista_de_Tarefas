@@ -13,12 +13,13 @@ nova_tarefa = st.text_input("Digite uma Tarefa")
 if st.button("Adicionar"):
 
     if nova_tarefa != "":
-
         tarefa = {
             "nome": nova_tarefa,
             "concluida": False
         }
+
         st.session_state.tarefas.append(tarefa)
+
 st.subheader("Minhas Tarefas")
 
 for i, tarefa in enumerate(st.session_state.tarefas):
@@ -27,13 +28,10 @@ for i, tarefa in enumerate(st.session_state.tarefas):
 
     with col1:
         concluida = st.checkbox(
-            tarefa["nome"],
-            value=tarefa["concluida"],
+             tarefa["nome"],
+            value = tarefa["concluida"],
             key=i
-            )
-
-        tarefa["concluida"] = concluida
-    
+            )   
     with col2:
         if st.button("x", key=f"delete{i}"):
             st.session_state.tarefas.pop(i)
